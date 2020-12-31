@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function card(content, display='block') {
+  if(!content) {
+    content = `
+    <img alt="London" style="width:100%" 
+    src="https://www.w3schools.com/w3css/img_london.jpg">
+    <div style="padding:0.01em 16px">
+      <p>London is the capital city of England.</p>
+      <p>It is the most populous city in the UK.</p>
+    </div>
+    `;
+  }
+
+  var CSS, JS, HTML='', JSX=document.body;
+  
+  CSS = [
+    `
+      display: ${display};
+      width: 45%;
+      box-shadow: 
+      0 2px 5px 0 rgba(0,0,0,0.16),
+      0 2px 10px 0 rgba(0,0,0,0.12);
+    `
+  ];
+
+  JS = [
+    `
+      onmouseover="
+        this.style.cssText += \`
+          box-shadow: 
+          0 4px 10px 0 rgba(0,0,0,0.2),
+          0 4px 20px 0 rgba(0,0,0,0.19);
+        \`;
+      "
+      onmouseout="
+        this.style.cssText += \`
+          box-shadow: 
+          0 2px 5px 0 rgba(0,0,0,0.16),
+          0 2px 10px 0 rgba(0,0,0,0.12);
+        \`;
+      "
+    `
+  ];
+  
+  HTML += `
+  <div style="${CSS[0]}" ${JS[0]}>
+    ${content}
+  </div>
+  `;
+  
+  JSX.innerHTML += HTML;
+} 
+</script>
+</head>
+
+<body>
+
+<h2 onclick="
+var x, that;
+x = this.nextElementSibling.nextElementSibling;
+x.style.cssText += `
+  display: block;
+`;
+that = this;
+window.onclick = function(event) {
+  if(event.target !== that) {
+    x.style.cssText += `
+      display: none;
+    `;
+  }
+}
+">London</h2>
+<script>card('', 'none')</script>
+<!-- Hidden Card Content -->
+<h1>Hello World!</h1>
+
+</body>
+</html>
